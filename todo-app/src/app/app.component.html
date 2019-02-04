@@ -16,8 +16,12 @@
 <app-todo *ngIf="selectedTodoId" [todo]="getSelectedTodo()"></app-todo>
 
 <div>
-  <p>Completed todos:</p>
-  <ul>
-    <li *ngFor="let todo of getCompletedTodos()" value="todo.id">{{todo.title}}</li>
-  </ul>
+  <mat-list>
+    <h3 mat-subheader>Completed todos:</h3>
+    <mat-list-item *ngFor="let todo of getCompletedTodos()">
+        <mat-icon mat-list-icon>check_circle_outline</mat-icon>
+        <h4 mat-line>{{todo.title}}</h4>
+        <p mat-line>id={{todo.id}} </p>
+    </mat-list-item>
+  </mat-list>
 </div>
