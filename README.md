@@ -20,6 +20,11 @@ pour lancer la compilation continue et le serveur de développement. Par la suit
 
 Cette commande lance le script start que l'on trouve dans la partie scripts de notre package.json.
 
+### Lancer l'application
+
+- Supprimer du package.json la dépendance @angular/cli, évite d'avoir plusieurs versions d'angular-cli en fonction des devs
+- Sans ng CLI -> `npm run start` ==> task/script définie par défaut dans le package.json
+
 ## Outils
 ### npx: node package executor
 - télécharge la dernière version en cache mais ne l'installe pas en global
