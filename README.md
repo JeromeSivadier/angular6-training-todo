@@ -34,3 +34,7 @@ Cette commande lance le script start que l'on trouve dans la partie scripts de n
 - preprocesseur qui permet d'avoir des variables, des fonctions, faire des boucles, des if...
 - génère du CSS ensuite
 
+## Pour information
+### Compilateur
+- webpack.js => invoqué à chaque modification d'un fichier sur le disque, tire le graphe de deps et génère l'application minifiée
+- websocket mis en place entre la page et le code de développement pour recharger la page dynamiquement à chaque edit (après recompilation)
