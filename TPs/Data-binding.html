@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<!-- saved from url=(0040)http://192.168.1.9:8080/tp/todo/tp2.html -->
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        
+        <title>Data-binding</title>
+        <link rel="stylesheet" href="./Data-binding_files/katex.min.css" integrity="sha384-9eLZqc9ds8eNjO3TmqPeYcDj8n+Qfa4nuSiGYa6DjLNcv9BtN69ZIulL9+8CqC9Y" crossorigin="anonymous">
+        <link rel="stylesheet" href="./Data-binding_files/markdown.css">
+        <link rel="stylesheet" href="./Data-binding_files/highlight.css">
+        <link href="./Data-binding_files/katex-copytex.min.css" rel="stylesheet" type="text/css">
+        <style>
+.task-list-item { list-style-type: none; } .task-list-item-checkbox { margin-left: -20px; vertical-align: middle; }
+</style>
+        <style>
+            body {
+                font-family: -apple-system, BlinkMacSystemFont, 'Segoe WPC', 'Segoe UI', 'HelveticaNeue-Light', 'Ubuntu', 'Droid Sans', sans-serif;
+                font-size: 14px;
+                line-height: 1.6;
+            }
+        </style>
+        
+        <script src="./Data-binding_files/katex-copytex.min.js"></script>
+    </head>
+    <body>
+        <h1 id="data-binding">Data-binding</h1>
+<h2 id="data-binding-simple">Data-binding simple</h2>
+<ul>
+<li>Afficher une variable numérique dans le composant racine <code>app.component</code></li>
+<li>Ajouter un bouton qui déclenche l'incrémentation de la variable</li>
+</ul>
+<h2 id="data-binding-dans-les-2-sens">Data-binding dans les 2 sens</h2>
+<ul>
+<li>Ajouter à <code>app.component</code> un champ texte (<code>&lt;input type="text"/&gt;</code>) qui est lié en lecture-écriture à une variable de <code>app.component</code>. On utilisera pour cela <code>ngModel</code>.
+<ul>
+<li>pour pouvoir utiliser <code>ngModel</code>, il faut rajouter le module <code>FormsModule</code> aux <code>imports</code> de <code>app.module</code>.</li>
+<li>attention à la syntaxe: <code>[(ngModel)]=...</code></li>
+</ul>
+</li>
+<li>Afficher le contenu de la variable texte en dehors de l'input et vérifier que le texte se mette bien à jour quand on saisit du texte dans l'input</li>
+<li>Ajouter un bouton qui ajoute la valeur saisie dans un tableau du <code>app.component.ts</code>. Typer au maximum la déclaration du tableau.</li>
+<li>Afficher les valeurs du tableau dans une liste: <code>&lt;ul&gt;&lt;li&gt;...&lt;/li&gt;&lt;/ul&gt;</code></li>
+<li>Afficher la nombre total de caractères (Array.reduce...) de tous les mots du tableau</li>
+</ul>
+
+    
+    </body></html>
