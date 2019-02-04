@@ -38,3 +38,5 @@ Cette commande lance le script start que l'on trouve dans la partie scripts de n
 ### Compilateur
 - webpack.js => invoqué à chaque modification d'un fichier sur le disque, tire le graphe de deps et génère l'application minifiée
 - websocket mis en place entre la page et le code de développement pour recharger la page dynamiquement à chaque edit (après recompilation)
+
+### typescriptlang.org
