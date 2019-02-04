@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<!-- saved from url=(0040)http://192.168.1.9:8080/tp/todo/tp3.html -->
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        
+        <title>Todo-app, 1ère version</title>
+        <link rel="stylesheet" href="./Todo-app, 1ère version_files/katex.min.css" integrity="sha384-9eLZqc9ds8eNjO3TmqPeYcDj8n+Qfa4nuSiGYa6DjLNcv9BtN69ZIulL9+8CqC9Y" crossorigin="anonymous">
+        <link rel="stylesheet" href="./Todo-app, 1ère version_files/markdown.css">
+        <link rel="stylesheet" href="./Todo-app, 1ère version_files/highlight.css">
+        <link href="./Todo-app, 1ère version_files/katex-copytex.min.css" rel="stylesheet" type="text/css">
+        <style>
+.task-list-item { list-style-type: none; } .task-list-item-checkbox { margin-left: -20px; vertical-align: middle; }
+</style>
+        <style>
+            body {
+                font-family: -apple-system, BlinkMacSystemFont, 'Segoe WPC', 'Segoe UI', 'HelveticaNeue-Light', 'Ubuntu', 'Droid Sans', sans-serif;
+                font-size: 14px;
+                line-height: 1.6;
+            }
+        </style>
+        
+        <script src="./Todo-app, 1ère version_files/katex-copytex.min.js"></script>
+    </head>
+    <body>
+        <h1 id="todo-app-1%C3%A8re-version">Todo-app, 1ère version</h1>
+<h2 id="cr%C3%A9er-le-mod%C3%A8le-de-donn%C3%A9es">Créer le modèle de données</h2>
+<p>Créer une interface <code>Todo</code> dans <code>apps/model</code>:</p>
+<ul>
+<li>id: numérique,</li>
+<li>userId: numérique,</li>
+<li>title: chaîne de caractères,</li>
+<li>completed: booléen
+Attention à ne pas utiliser les types wrapper : <code>boolean</code> plutôt que <code>Boolean</code>.</li>
+</ul>
+<h2 id="cr%C3%A9er-un-composant-pour-afficher-un-todo">Créer un composant pour afficher un Todo</h2>
+<ul>
+<li>Invoquer <code>npx ng generate component todo</code>.</li>
+<li>Observer les changements effectués au fichier <code>app.module.ts</code>.</li>
+<li>Ce composant doit prendre un Todo en entrée et afficher ce Todo.
+Dans un premier temps, on peut seulement afficher le titre.</li>
+</ul>
+<h2 id="int%C3%A9grer-ce-composant-dans-le-composant-racine">Intégrer ce composant dans le composant racine</h2>
+<ul>
+<li>Ajouter à la classe du composant <code>app.component</code>, une variable qui stocke un tableau de Todo et lui donner une valeur (typer au maximum la déclaration au moyen des Generics).</li>
+<li>Ajouter au template du composant <code>app.component</code>, l'affichage des todo créés.</li>
+<li>Compléter le composant todo pour qu'il affiche une checkbox liée en entrée/sortie à la propriété "completed"</li>
+<li>Ajouter ensuite l'affichage du nombre de Todo "completed". Pour cela, rajouter un getter à la classe qui calcule ce nombre sans boucle for. Vérifier que ce nombre se mette bien à jour quand on coche/décoche des todos.</li>
+</ul>
+<h2 id="bonus--utiliser-material">Bonus&nbsp;: utiliser Material</h2>
+<p><a href="https://material.angular.io/guide/getting-started">Guide de démarrage</a></p>
+<ul>
+<li>Intégrer le package @anguler/material à votre projet avec CLI: <code>npx ng add @angular/material</code></li>
+<li>Générer un module <code>material</code>: Créer un fichier <code>material.module.ts</code> à côté de <code>app.module.ts</code>:</li>
+</ul>
+<pre><code class="language-typescript"><div><span class="hljs-keyword">import</span> { NgModule } <span class="hljs-keyword">from</span> <span class="hljs-string">'@angular/core'</span>;
+<span class="hljs-keyword">import</span> {
+  MatListModule,
+} <span class="hljs-keyword">from</span> <span class="hljs-string">'@angular/material'</span>;
+
+<span class="hljs-comment">/**
+ * NgModule that includes all the Material modules used by the app.
+ */</span>
+<span class="hljs-meta">@NgModule</span>({
+  imports: [
+    MatListModule
+  ],
+  exports: [
+    MatListModule,
+  ]
+})
+<span class="hljs-keyword">export</span> <span class="hljs-keyword">class</span> MaterialModule {}
+</div></code></pre>
+<ul>
+<li>Utiliser une List Material dans <code>app.component</code> et une Checkbox dans <code>todo.component</code></li>
+</ul>
+
+    
+    </body></html>

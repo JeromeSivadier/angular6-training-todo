@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { variable } from '@angular/compiler/src/output/output_ast';
+import { Todo } from './model/Todo';
 
 @Component({
   selector: 'app-root',
@@ -9,19 +9,23 @@ import { variable } from '@angular/compiler/src/output/output_ast';
 export class AppComponent {
   title = 'todo-app';
 
-  variable = 0;
-  textContent = '';
-  allTextContents: string[] = [];
+  selectedTodoId: string;
+  todos: Todo[] = [];
 
-  increment(): void {
-    this.variable++;
+  addTodo(): void {
+    const currentId = this.getNextId();
+    this.todos.push({id: currentId, userId: 0, title: `TODO ${currentId}`, completed: false});
   }
 
-  addToAllTextContents(value: string): void {
-    this.allTextContents.push(value);
+  getNextId(): number {
+    return this.todos.length;
   }
 
-  sumCharacters(): number {
-    return this.allTextContents.reduce((acc, x) => acc + x.length, 0);
+  getSelectedTodo(): Todo {
+    return this.todos.find(t => t.id === +this.selectedTodoId);
+  }
+
+  getCompletedTodos(): Todo[] {
+    return this.todos.filter(t => t.completed === true);
   }
 }

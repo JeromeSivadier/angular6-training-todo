@@ -1,23 +1,23 @@
-
 <div>
-  <label for="incrementButton">Variable value: {{variable}}  --> </label>
-  <button id="incrementButton" (click)="increment()">Increment</button>
+  <p *ngIf="selectedTodoId">Selected todo id: {{selectedTodoId}}</p>
 </div>
 
 <div>
-  <label for="textContentInput">Enter input --> </label>
-  <input type="text" [(ngModel)]="textContent" id="textContentInput">
-  <p>Input value {{ textContent }}</p>
+  <button id="addTodoButton" (click)="addTodo()" >Add TODO</button>
 </div>
 
 <div>
-  <button (click)="addToAllTextContents(textContent); textContent = ''">Add current content to array</button>
-  <p>All text content</p>
+  <p>All things todo:</p>
+  <select [(ngModel)]="selectedTodoId">
+    <option *ngFor="let todo of todos" [value]="todo.id">{{todo.title}}</option>
+  </select>
+</div>
+
+<app-todo *ngIf="selectedTodoId" [todo]="getSelectedTodo()"></app-todo>
+
+<div>
+  <p>Completed todos:</p>
   <ul>
-    <li *ngFor="let content of allTextContents">{{content}}</li>
+    <li *ngFor="let todo of getCompletedTodos()" value="todo.id">{{todo.title}}</li>
   </ul>
-</div>
-
-<div>
-  <p>This array is composed of {{ sumCharacters() }} characters!</p>
 </div>

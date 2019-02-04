@@ -1,0 +1,9 @@
+<div *ngIf="todo">
+    <p>Current task:</p>
+    <ul>
+      <li>id: {{todo.id}}</li>
+      <li>userId: {{todo.userId}}</li>
+      <li>title: {{todo.title}}</li>
+      <li>completed: <input type="checkbox" [(ngModel)]="todo.completed" /></li>
+    </ul>
+</div>
