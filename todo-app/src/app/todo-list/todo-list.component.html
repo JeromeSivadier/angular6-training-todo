@@ -7,7 +7,7 @@
     <mat-option *ngFor="let todo of todos" [value]="todo.id">{{todo.title}}</mat-option>
   </mat-select>
 </mat-form-field>
-<button mat-stroked-button (click)="onAddTask()" >Add Task</button>
+<button mat-stroked-button (click)="onAddTodo()" >Add Todo</button>
 
 <app-todo [todo]="getSelectedTodo()" (taskStateChanged)="onTaskStateChanged($event)" (taskRemoved)="onTaskRemoved($event)"></app-todo>
 

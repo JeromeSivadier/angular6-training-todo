@@ -1,0 +1,8 @@
+<h1 mat-dialog-title>Create a new task</h1>
+<div mat-dialog-content>
+  <app-todo-creator #creator></app-todo-creator>
+</div>
+<div mat-dialog-actions>
+  <button mat-button (click)="onCancel()">Cancel</button>
+  <button mat-button (click)="onGenerateTodo(creator.generateTodo())" cdkFocusInitial>OK</button>
+</div>

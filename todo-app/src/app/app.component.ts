@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { Todo } from './model/Todo';
+import { Todo, TodoLight } from './model/Todo';
 import { LoggingService } from './logging.service';
 
 @Component({
@@ -20,10 +20,10 @@ export class AppComponent {
     return this.todos.length;
   }
 
-  onAddTask(): void {
-    this.logger.log('App: adding a new Task');
+  onAddTodo(todo: TodoLight): void {
+    this.logger.log('App: adding a new todo -> ', todo);
     const currentId = this.getNextId();
-    this.todos.push({id: currentId, userId: 0, title: `TODO ${currentId}`, completed: false});
+    this.todos.push({id: currentId, userId: todo.userId, title: todo.title, completed: false});
   }
 
   onTaskStateChanged(taskId: number) {

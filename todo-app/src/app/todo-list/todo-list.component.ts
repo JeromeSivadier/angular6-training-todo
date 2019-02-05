@@ -1,6 +1,8 @@
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
-import { Todo } from '../model/Todo';
+import { Todo, TodoLight } from '../model/Todo';
 import { LoggingService } from '../logging.service';
+import { MatDialog } from '@angular/material';
+import { CreateTodoDialogComponent } from '../todo-creator/create-todo-dialog.component';
 
 @Component({
   selector: 'app-todo-list',
@@ -11,9 +13,9 @@ export class TodoListComponent implements OnInit {
 
   selectedTodoId: string;
   @Input() todos: Todo[];
-  @Output() addTask = new EventEmitter<void>();
   @Output() taskStateChanged = new EventEmitter<number>();
   @Output() taskRemoved = new EventEmitter<number>();
+  @Output() generateTodo = new EventEmitter<TodoLight>();
 
   getSelectedTodo(): Todo {
     return this.todos.find(t => t.id === +this.selectedTodoId);
@@ -23,8 +25,14 @@ export class TodoListComponent implements OnInit {
     return this.todos.filter(t => t.completed === true);
   }
 
-  onAddTask(): void {
-    this.addTask.emit();
+  onAddTodo(todo: TodoLight): void {
+    const dialogRef = this.dialog.open(CreateTodoDialogComponent);
+    dialogRef.afterClosed().subscribe(result => {
+      this.logger.log('Todo-list: received generate todo -> ', result);
+      if (result) {
+        this.generateTodo.emit(result);
+      }
+    });
   }
 
   onTaskStateChanged(taskId: number) {
@@ -38,7 +46,8 @@ export class TodoListComponent implements OnInit {
   }
 
   constructor(
-    private readonly logger: LoggingService
+    private readonly logger: LoggingService,
+    public dialog: MatDialog
   ) { }
 
   ngOnInit() {

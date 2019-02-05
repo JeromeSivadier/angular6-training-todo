@@ -4,3 +4,8 @@ export interface Todo {
   title: string;
   completed: boolean;
 }
+
+export interface TodoLight {
+  userId: number;
+  title: string;
+}

@@ -1,0 +1,8 @@
+.todo-creator-div {
+  display: flex;
+  flex-direction: column;
+}
+
+.todo-creator-div > * {
+  width: 100%;
+}
