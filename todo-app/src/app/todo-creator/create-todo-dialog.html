@@ -4,5 +4,5 @@
 </div>
 <div mat-dialog-actions>
   <button mat-button (click)="onCancel()">Cancel</button>
-  <button mat-button (click)="onGenerateTodo(creator.generateTodo())" cdkFocusInitial>OK</button>
+  <button mat-button (click)="creator.isValid() ? onGenerateTodo(creator.generateTodo()) : null" cdkFocusInitial>OK</button>
 </div>

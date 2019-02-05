@@ -1,6 +1,6 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 import { AppComponent } from './app.component';
 import { TodoComponent } from './todo/todo.component';
@@ -30,7 +30,8 @@ import { MockWebApiService } from './webapi/mockwebapi.service';
     FormsModule,
     MaterialModule,
     BrowserAnimationsModule,
-    MatDialogModule
+    MatDialogModule,
+    ReactiveFormsModule
   ],
   providers: [
     [{ provide: WebApi, useClass: MockWebApiService }]

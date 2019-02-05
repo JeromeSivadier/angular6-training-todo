@@ -1,8 +1,8 @@
 <div class="todo-creator-div">
   <mat-form-field>
-    <input matInput [(ngModel)]="title" placeholder="Task title" />
+    <input matInput [formControl]="title" placeholder="Task title" required />
   </mat-form-field>
   <mat-form-field>
-    <input matInput [(ngModel)]="userId" placeholder="User ID" />
+    <input matInput [formControl]="userId" placeholder="User ID" required />
   </mat-form-field>
 </div>
