@@ -4,10 +4,10 @@
           <mat-icon mat-card-avatar>turned_in_not</mat-icon>
           <mat-card-title>{{todo.title}}</mat-card-title>
           <mat-card-subtitle>id={{todo.id}}, userId={{todo.userId}}</mat-card-subtitle>
+          <mat-checkbox
+            (change)="onTaskStateChanged()"
+            [ngModel]="todo.completed"
+            labelPosition="before">Task complete</mat-checkbox>
         </mat-card-header>
-        <mat-card-content>
-            <label for="completedCheckbox">Complete task </label>
-            <mat-checkbox id="completedCheckbox" (change)="onTaskStateChanged()" [ngModel]="todo.completed"></mat-checkbox>
-        </mat-card-content>
     </mat-card>
 </div>
