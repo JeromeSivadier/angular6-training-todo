@@ -30,6 +30,10 @@ Cette commande lance le script start que l'on trouve dans la partie scripts de n
 - télécharge la dernière version en cache mais ne l'installe pas en global
 - évite d'avoir des version en dur dans le gestionnaire de dépendances
 
+### ng: node generate
+- `ng config` -> Retrieves or sets Angular configuration values in the angular.json file for the workspace.
+- `ng generate` -> generates a new class/component/module/service...
+
 ### SCSS: outil pour générer du CSS facilement
 - preprocesseur qui permet d'avoir des variables, des fonctions, faire des boucles, des if...
 - génère du CSS ensuite
@@ -40,3 +44,10 @@ Cette commande lance le script start que l'on trouve dans la partie scripts de n
 - websocket mis en place entre la page et le code de développement pour recharger la page dynamiquement à chaque edit (après recompilation)
 
 ### typescriptlang.org
+
+### material.io
+- site Material de Google qui indique comment faire des interface graphiques avec DO et DONT
+
+### materialpalette.com
+- tests de couleurs pour du Material design
+- montre une preview des composants en fonction des couleurs primaire / secondaire choisies
