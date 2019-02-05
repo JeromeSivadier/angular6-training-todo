@@ -1,9 +1,13 @@
 <div *ngIf="todo">
-    <p>Current task:</p>
-    <ul>
-      <li>id: {{todo.id}}</li>
-      <li>userId: {{todo.userId}}</li>
-      <li>title: {{todo.title}}</li>
-      <li>completed: <mat-checkbox [(ngModel)]="todo.completed"></mat-checkbox></li>
-    </ul>
+    <mat-card>
+        <mat-card-header>
+          <mat-icon mat-card-avatar>turned_in_not</mat-icon>
+          <mat-card-title>{{todo.title}}</mat-card-title>
+          <mat-card-subtitle>id={{todo.id}}, userId={{todo.userId}}</mat-card-subtitle>
+        </mat-card-header>
+        <mat-card-content>
+            <label for="completedCheckbox">Complete task </label>
+            <mat-checkbox id="completedCheckbox" [(ngModel)]="todo.completed"></mat-checkbox>
+        </mat-card-content>
+    </mat-card>
 </div>

@@ -1,23 +1,25 @@
 <div>
-  <p *ngIf="selectedTodoId">Selected todo id: {{selectedTodoId}}</p>
+  <p>Selected task id: {{selectedTodoId}}</p>
 </div>
 
 <div>
-  <button id="addTodoButton" (click)="addTodo()" >Add TODO</button>
+  <button id="addTodoButton" (click)="addTodo()" >Add Task</button>
 </div>
 
 <div>
-  <p>All things todo:</p>
-  <select [(ngModel)]="selectedTodoId">
-    <option *ngFor="let todo of todos" [value]="todo.id">{{todo.title}}</option>
-  </select>
+  <p>All tasks todo:</p>
+  <mat-form-field>
+    <mat-select placeholder="Select a task to display" [(ngModel)]="selectedTodoId">
+      <mat-option *ngFor="let todo of todos" [value]="todo.id">{{todo.title}}</mat-option>
+    </mat-select>
+  </mat-form-field>
 </div>
 
-<app-todo *ngIf="selectedTodoId" [todo]="getSelectedTodo()"></app-todo>
+<app-todo [todo]="getSelectedTodo()"></app-todo>
 
 <div>
   <mat-list>
-    <h3 mat-subheader>Completed todos:</h3>
+    <h3 mat-subheader>Completed tasks:</h3>
     <mat-list-item *ngFor="let todo of getCompletedTodos()">
         <mat-icon mat-list-icon>check_circle_outline</mat-icon>
         <h4 mat-line>{{todo.title}}</h4>

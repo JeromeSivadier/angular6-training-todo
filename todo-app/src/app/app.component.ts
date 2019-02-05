@@ -10,7 +10,7 @@ export class AppComponent {
   title = 'todo-app';
 
   selectedTodoId: string;
-  todos: Todo[] = [];
+  todos: Todo[] = this.createInitialList();
 
   addTodo(): void {
     const currentId = this.getNextId();
@@ -27,5 +27,15 @@ export class AppComponent {
 
   getCompletedTodos(): Todo[] {
     return this.todos.filter(t => t.completed === true);
+  }
+
+  createInitialList(): Todo[] {
+    return [
+      {id: 0, userId: 0, title: 'Eat vegetables', completed: false},
+      {id: 1, userId: 0, title: 'Do laundry', completed: false},
+      {id: 2, userId: 0, title: 'Watch a movie', completed: false},
+      {id: 3, userId: 0, title: 'Throw a party', completed: false},
+      {id: 4, userId: 0, title: 'Work', completed: false}
+    ];
   }
 }
