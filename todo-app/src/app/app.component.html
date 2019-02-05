@@ -2,20 +2,14 @@
   <p>Selected task id: {{selectedTodoId}}</p>
 </div>
 
-<div>
-  <button id="addTodoButton" (click)="addTodo()" >Add Task</button>
-</div>
+<mat-form-field>
+  <mat-select placeholder="Tasks" [(ngModel)]="selectedTodoId">
+    <mat-option *ngFor="let todo of todos" [value]="todo.id">{{todo.title}}</mat-option>
+  </mat-select>
+</mat-form-field>
+<button mat-stroked-button id="addTodoButton" (click)="addTodo()" >Add Task</button>
 
-<div>
-  <p>All tasks todo:</p>
-  <mat-form-field>
-    <mat-select placeholder="Select a task to display" [(ngModel)]="selectedTodoId">
-      <mat-option *ngFor="let todo of todos" [value]="todo.id">{{todo.title}}</mat-option>
-    </mat-select>
-  </mat-form-field>
-</div>
-
-<app-todo [todo]="getSelectedTodo()"></app-todo>
+<app-todo [todo]="getSelectedTodo()" (taskStateChanged)="onTaskStateChanged($event)"></app-todo>
 
 <div>
   <mat-list>

@@ -7,7 +7,7 @@
         </mat-card-header>
         <mat-card-content>
             <label for="completedCheckbox">Complete task </label>
-            <mat-checkbox id="completedCheckbox" [(ngModel)]="todo.completed"></mat-checkbox>
+            <mat-checkbox id="completedCheckbox" (change)="onTaskStateChanged()" [ngModel]="todo.completed"></mat-checkbox>
         </mat-card-content>
     </mat-card>
 </div>

@@ -45,6 +45,13 @@ Dans un premier temps, on peut seulement afficher le titre.</li>
 <li>Compléter le composant todo pour qu'il affiche une checkbox liée en entrée/sortie à la propriété "completed"</li>
 <li>Ajouter ensuite l'affichage du nombre de Todo "completed". Pour cela, rajouter un getter à la classe qui calcule ce nombre sans boucle for. Vérifier que ce nombre se mette bien à jour quand on coche/décoche des todos.</li>
 </ul>
+<h2 id="remonter-l%C3%A9v%C3%A9nement-de-compl%C3%A9tion">Remonter l'événement de complétion</h2>
+<p>Dans le composant <code>todo.component</code>, au lieu de modifier directement le todo passé, envoyer un événement depuis qui sera intercepté par <code>app.component</code>. La responsabilité de modifier l'objet modèle todo est maintenant confiée à <code>app.component</code>. <code>todo.component</code> ne fait plus que afficher un todo et envoyer un événement ; il n'a plus d'effet de bord sur la donnée qu'on lui a passée.</p>
+<p>Dans le composant <code>todo.component</code>, vous aurez besoin de :</p>
+<ul>
+<li>brancher l'attribut <code>checked</code> de la checkbox sur la propriété <code>completed</code> du todo à afficher</li>
+<li>brancher l'événement <code>change</code>de la checkbox sur une méthode de <code>todo.component</code></li>
+</ul>
 <h2 id="bonus--utiliser-material">Bonus&nbsp;: utiliser Material</h2>
 <p><a href="https://material.angular.io/guide/getting-started">Guide de démarrage</a></p>
 <ul>

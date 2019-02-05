@@ -29,6 +29,13 @@ export class AppComponent {
     return this.todos.filter(t => t.completed === true);
   }
 
+  onTaskStateChanged(taskId: number) {
+    const todo = this.todos.find(t => t.id === taskId);
+    if (todo) {
+      todo.completed = !todo.completed;
+    }
+  }
+
   createInitialList(): Todo[] {
     return [
       {id: 0, userId: 0, title: 'Eat vegetables', completed: false},
