@@ -6,11 +6,13 @@ import { AppComponent } from './app.component';
 import { TodoComponent } from './todo/todo.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MaterialModule } from './material.module';
+import { TodoListComponent } from './todo-list/todo-list.component';
 
 @NgModule({
   declarations: [
     AppComponent,
-    TodoComponent
+    TodoComponent,
+    TodoListComponent
   ],
   imports: [
     BrowserModule,

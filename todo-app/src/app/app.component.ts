@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { Todo } from './model/Todo';
+import { LoggingService } from './logging.service';
 
 @Component({
   selector: 'app-root',
@@ -9,31 +10,41 @@ import { Todo } from './model/Todo';
 export class AppComponent {
   title = 'todo-app';
 
-  selectedTodoId: string;
-  todos: Todo[] = this.createInitialList();
+  constructor(
+    private readonly logger: LoggingService
+  ) {}
 
-  addTodo(): void {
-    const currentId = this.getNextId();
-    this.todos.push({id: currentId, userId: 0, title: `TODO ${currentId}`, completed: false});
-  }
+  todos: Todo[] = this.createInitialList();
 
   getNextId(): number {
     return this.todos.length;
   }
 
-  getSelectedTodo(): Todo {
-    return this.todos.find(t => t.id === +this.selectedTodoId);
-  }
-
-  getCompletedTodos(): Todo[] {
-    return this.todos.filter(t => t.completed === true);
+  onAddTask(): void {
+    this.logger.log('App: adding a new Task');
+    const currentId = this.getNextId();
+    this.todos.push({id: currentId, userId: 0, title: `TODO ${currentId}`, completed: false});
   }
 
   onTaskStateChanged(taskId: number) {
-    const todo = this.todos.find(t => t.id === taskId);
+    this.logger.log('App: received changed event -> ', taskId);
+    const todo = this.getTask(taskId);
     if (todo) {
       todo.completed = !todo.completed;
     }
+  }
+
+  onTaskRemoved(taskId: number) {
+    this.logger.log('App: received remove event -> ', taskId);
+    const task = this.getTask(taskId);
+    const taskPosition = this.todos.indexOf(task);
+    if (taskPosition > 0) {
+      this.todos.splice(taskPosition, 1);
+    }
+  }
+
+  getTask(taskId: number) {
+    return this.todos.find(t => t.id === taskId);
   }
 
   createInitialList(): Todo[] {

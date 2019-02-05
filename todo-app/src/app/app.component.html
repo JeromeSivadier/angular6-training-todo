@@ -1,21 +1,5 @@
-<div>
-  <p>Selected task id: {{selectedTodoId}}</p>
-</div>
-
-<mat-form-field>
-  <mat-select placeholder="Tasks" [(ngModel)]="selectedTodoId">
-    <mat-option *ngFor="let todo of todos" [value]="todo.id">{{todo.title}}</mat-option>
-  </mat-select>
-</mat-form-field>
-<button mat-stroked-button id="addTodoButton" (click)="addTodo()" >Add Task</button>
-
-<app-todo [todo]="getSelectedTodo()" (taskStateChanged)="onTaskStateChanged($event)"></app-todo>
-
-<mat-list>
-  <h3 mat-subheader>Completed tasks:</h3>
-  <mat-list-item *ngFor="let todo of getCompletedTodos()">
-      <mat-icon mat-list-icon>check_circle_outline</mat-icon>
-      <h4 mat-line>{{todo.title}}</h4>
-      <p mat-line>id={{todo.id}} </p>
-  </mat-list-item>
-</mat-list>
+<app-todo-list
+  [todos]="todos"
+  (taskStateChanged)="onTaskStateChanged($event)"
+  (taskRemoved)="onTaskRemoved($event)"
+  (addTask)="onAddTask($event)"></app-todo-list>

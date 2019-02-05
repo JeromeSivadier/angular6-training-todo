@@ -33,6 +33,7 @@ Cette commande lance le script start que l'on trouve dans la partie scripts de n
 ### ng: node generate
 - `ng config` -> Retrieves or sets Angular configuration values in the angular.json file for the workspace.
 - `ng generate` -> generates a new class/component/module/service...
+- with npx: `npx ng generate component todo-list --module app`
 
 ### SCSS: outil pour générer du CSS facilement
 - preprocesseur qui permet d'avoir des variables, des fonctions, faire des boucles, des if...

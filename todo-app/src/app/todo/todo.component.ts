@@ -1,5 +1,6 @@
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { Todo } from '../model/Todo';
+import { LoggingService } from '../logging.service';
 
 @Component({
   selector: 'app-todo',
@@ -9,12 +10,21 @@ import { Todo } from '../model/Todo';
 export class TodoComponent implements OnInit {
   @Input() todo: Todo;
   @Output() taskStateChanged = new EventEmitter<number>();
+  @Output() taskRemoved = new EventEmitter<number>();
 
   onTaskStateChanged() {
+    this.logger.log('Todo: sent changed event -> ', this.todo.id);
     this.taskStateChanged.emit(this.todo.id);
   }
 
-  constructor() {}
+  onTaskRemoved() {
+    this.logger.log('Todo: sent removed event -> ', this.todo.id);
+    this.taskRemoved.emit(this.todo.id);
+  }
+
+  constructor(
+    private readonly logger: LoggingService
+  ) {}
 
   ngOnInit() {
   }
