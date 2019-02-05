@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<!-- saved from url=(0040)http://192.168.1.9:8080/tp/todo/tp6.html -->
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        
+        <title>Todo-app: ajout d'un service "WebApi"</title>
+        <link rel="stylesheet" href="./Todo-app_ ajout d&#39;un service _WebApi__files/katex.min.css" integrity="sha384-9eLZqc9ds8eNjO3TmqPeYcDj8n+Qfa4nuSiGYa6DjLNcv9BtN69ZIulL9+8CqC9Y" crossorigin="anonymous">
+        <link rel="stylesheet" href="./Todo-app_ ajout d&#39;un service _WebApi__files/markdown.css">
+        <link rel="stylesheet" href="./Todo-app_ ajout d&#39;un service _WebApi__files/highlight.css">
+        <link href="./Todo-app_ ajout d&#39;un service _WebApi__files/katex-copytex.min.css" rel="stylesheet" type="text/css">
+        <style>
+.task-list-item { list-style-type: none; } .task-list-item-checkbox { margin-left: -20px; vertical-align: middle; }
+</style>
+        <style>
+            body {
+                font-family: -apple-system, BlinkMacSystemFont, 'Segoe WPC', 'Segoe UI', 'HelveticaNeue-Light', 'Ubuntu', 'Droid Sans', sans-serif;
+                font-size: 14px;
+                line-height: 1.6;
+            }
+        </style>
+        
+        <script src="./Todo-app_ ajout d&#39;un service _WebApi__files/katex-copytex.min.js"></script>
+    </head>
+    <body>
+        <h1 id="todo-app-ajout-dun-service-%22webapi%22">Todo-app: ajout d'un service "WebApi"</h1>
+<p>On va créer un service qui sera injecté dans <code>app.component</code>.
+Ce service sera responsable des opérations de type CRUD (Create Read Update Delete) sur les todos.
+On créera d'abord un "mock" du service et dans un autre TP, un service branché sur une
+API REST.
+Le service mock nous permettra de:</p>
+<ul>
+<li>développer notre application alors que l'API REST est en cours de développement</li>
+<li>jouer des tests unitaires qui ne nécessitent pas d'être branchés à un serveur.</li>
+</ul>
+<h2 id="cr%C3%A9ation-du-service-mock">Création du service mock</h2>
+<ul>
+<li>Générer une classe nommée "WebApi" dans le dossier <code>webapi</code> (pas besoin de créer le dossier avant de lancer ng generate).
+Cette classe a 2 méthodes abstraites:
+<ul>
+<li>getTodos qui renvoie un tableau de Todos en fonction d'un userId</li>
+<li>deleteTodo, fonction d'un id</li>
+<li>s'assurer que les signatures des fonctions sont typées au maximum (paramètres et retour)</li>
+</ul>
+</li>
+<li>Générer un service nommé "MockWebApi" dans le dossier <code>webapi</code> et étendre la classe WebApi.
+On pourra stocker les todos dans une variable constante déclarée en dehors de la classe.</li>
+</ul>
+<h1 id="configurer-linjection-de-d%C3%A9pendance">Configurer l'injection de dépendance</h1>
+<ul>
+<li>Modifier <code>app.module</code> pour qu'Angular injecte un MockWebApi quand on lui demande un WebApi.</li>
+</ul>
+<h2 id="injection-dans-le-composant-racine">Injection dans le composant racine</h2>
+<ul>
+<li>À l'initialisation de <code>app.component</code>, utiliser WebApi pour initialiser le tableau de todos</li>
+<li>Remplacer le code de suppression dans <code>app.component</code> par un appel à WebApi pour supprimer,
+suivi d'un appel pour récupérer la liste des todos rafraichie.</li>
+</ul>
+
+    
+    </body></html>

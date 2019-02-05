@@ -11,6 +11,9 @@ import { TodoCreatorComponent } from './todo-creator/todo-creator.component';
 import { CreateTodoDialogComponent } from './todo-creator/create-todo-dialog.component';
 import { MatDialogModule } from '@angular/material';
 
+import { WebApi } from './webapi/web-api';
+import { MockWebApiService } from './webapi/mockwebapi.service';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -29,7 +32,9 @@ import { MatDialogModule } from '@angular/material';
     BrowserAnimationsModule,
     MatDialogModule
   ],
-  providers: [],
+  providers: [
+    [{ provide: WebApi, useClass: MockWebApiService }]
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

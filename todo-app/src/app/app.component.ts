@@ -1,59 +1,45 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { Todo, TodoLight } from './model/Todo';
 import { LoggingService } from './logging.service';
+import { WebApi } from './webapi/web-api';
 
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.scss']
 })
-export class AppComponent {
+export class AppComponent implements OnInit {
   title = 'todo-app';
+  todos: Todo[];
 
-  constructor(
-    private readonly logger: LoggingService
-  ) {}
-
-  todos: Todo[] = this.createInitialList();
-
-  getNextId(): number {
-    return this.todos.length;
+  ngOnInit(): void {
+    this.todos = this.webapi.getTodos();
   }
 
   onAddTodo(todo: TodoLight): void {
     this.logger.log('App: adding a new todo -> ', todo);
-    const currentId = this.getNextId();
-    this.todos.push({id: currentId, userId: todo.userId, title: todo.title, completed: false});
+    const newTodo = this.webapi.addTodo(todo);
+    this.todos.push(newTodo);
   }
 
   onTaskStateChanged(taskId: number) {
     this.logger.log('App: received changed event -> ', taskId);
-    const todo = this.getTask(taskId);
-    if (todo) {
-      todo.completed = !todo.completed;
-    }
+    const modifiedTodo = this.webapi.todoStateChanged(taskId);
+    this.todos.splice(this.getTodoIndex(taskId), 1, modifiedTodo);
   }
 
   onTaskRemoved(taskId: number) {
     this.logger.log('App: received remove event -> ', taskId);
-    const task = this.getTask(taskId);
-    const taskPosition = this.todos.indexOf(task);
-    if (taskPosition > 0) {
-      this.todos.splice(taskPosition, 1);
-    }
+    this.webapi.deleteTodo(taskId);
+    this.todos.splice(this.getTodoIndex(taskId), 1);
   }
 
-  getTask(taskId: number) {
-    return this.todos.find(t => t.id === taskId);
+  getTodoIndex(taskId: number) {
+    return this.todos.findIndex(t => t.id === taskId);
   }
 
-  createInitialList(): Todo[] {
-    return [
-      {id: 0, userId: 0, title: 'Eat vegetables', completed: false},
-      {id: 1, userId: 0, title: 'Do laundry', completed: false},
-      {id: 2, userId: 0, title: 'Watch a movie', completed: false},
-      {id: 3, userId: 0, title: 'Throw a party', completed: false},
-      {id: 4, userId: 0, title: 'Work', completed: false}
-    ];
-  }
+  constructor(
+    private readonly logger: LoggingService,
+    private readonly webapi: WebApi
+  ) {}
 }
