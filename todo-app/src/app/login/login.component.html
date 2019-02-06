@@ -1,0 +1,15 @@
+<div *ngIf="getCurrentUser(); else loginRequired">
+  <p>You are logged in as: {{ getCurrentUser().login }}</p>
+  <button mat-flat-button color="warn" (click)="onLogout()">Logout</button>
+</div>
+
+<ng-template #loginRequired>
+  <div class="login-div">
+    <p>Please enter your login to authenticate</p>
+    <mat-form-field>
+      <input matInput [formControl]="login" placeholder="Login" required />
+      <mat-error *ngIf="login.invalid">Enter a valid login</mat-error>
+    </mat-form-field>
+    <button mat-stroked-button (click)="onLogin()">Login</button>
+  </div>
+</ng-template>

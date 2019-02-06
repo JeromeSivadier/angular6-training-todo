@@ -1,11 +1,14 @@
 <mat-sidenav-container class="sidenav-container">
   <mat-sidenav mode="side" opened>
     <mat-nav-list>
-      <a mat-list-item [routerLink]="['/playground']" routerLinkActive="active">
+      <a mat-list-item *ngIf="authService.isAuthenticated()" [routerLink]="['/playground']" routerLinkActive="active">
         <span matLine>Playground</span>
       </a>
-      <a mat-list-item [routerLink]="['/todos']" routerLinkActive="active">
+      <a mat-list-item *ngIf="authService.isAuthenticated()" [routerLink]="['/todos']" routerLinkActive="active">
         <span matLine>Todos</span>
+      </a>
+      <a mat-list-item [routerLink]="['/login']" routerLinkActive="active">
+        <span matLine>Login</span>
       </a>
     </mat-nav-list>
   </mat-sidenav>

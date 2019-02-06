@@ -37,7 +37,7 @@ Cette commande lance le script start que l'on trouve dans la partie scripts de n
 
 ### Ensure refresh works on deployment
 - !! Use hash strategy instead of location one
-- `{provide: LocationStrategy, useClass: HashLocationStrategy},` in AppModule
+- `{provide: LocationStrategy, useClass: HashLocationStrategy},` in AppModule ou `{ useHash: true}` dans le RouterModule (eg: `RouterModule.forRoot(routes, { useHash: true})`)
 - see https://stackoverflow.com/questions/43535048/angular-2-routing-does-not-work-when-deployed-to-http-server?rq=1
 - see also to keep paths: https://angular.io/api/common/PathLocationStrategy 
 

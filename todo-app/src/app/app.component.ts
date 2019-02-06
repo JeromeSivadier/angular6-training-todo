@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Todo, TodoLight } from './model/Todo';
 import { LoggingService } from './logging.service';
 import { WebApi } from './webapi/web-api';
+import { AuthenticationService } from './login/authentication.service';
 
 @Component({
   selector: 'app-root',
@@ -11,5 +12,10 @@ import { WebApi } from './webapi/web-api';
 export class AppComponent implements OnInit {
   title = 'todo-app';
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+  }
+
+  constructor(
+    public readonly authService: AuthenticationService
+  ) {}
 }

@@ -19,6 +19,7 @@ import { TodosComponent } from './todos/todos.component';
 import { PlaygroundComponent } from './playground/playground.component';
 import { TodoResolver } from './todos/todo.resolver';
 import { LocationStrategy, HashLocationStrategy } from '@angular/common';
+import { LoginComponent } from './login/login.component';
 
 
 @NgModule({
@@ -29,7 +30,8 @@ import { LocationStrategy, HashLocationStrategy } from '@angular/common';
     TodoCreatorComponent,
     CreateTodoDialogComponent,
     TodosComponent,
-    PlaygroundComponent
+    PlaygroundComponent,
+    LoginComponent
   ],
   entryComponents: [
     CreateTodoDialogComponent
@@ -45,7 +47,7 @@ import { LocationStrategy, HashLocationStrategy } from '@angular/common';
   ],
   providers: [
     [
-      {provide: LocationStrategy, useClass: HashLocationStrategy},
+      { provide: LocationStrategy, useClass: HashLocationStrategy },
       { provide: WebApi, useClass: MockWebApiService },
       TodoResolver
     ]
