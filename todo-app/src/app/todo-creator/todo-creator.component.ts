@@ -13,7 +13,7 @@ export class TodoCreatorComponent implements OnInit {
   userId = new FormControl(0, [Validators.required]);
 
   generateTodo(): TodoLight {
-    const todo = {userId: this.userId.value, title: this.title.value};
+    const todo = {userId: +this.userId.value, title: this.title.value};
     this.logger.log('Todo-creator: creating -> ', todo);
     return todo;
   }

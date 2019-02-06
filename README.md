@@ -41,6 +41,10 @@ Cette commande lance le script start que l'on trouve dans la partie scripts de n
 - see https://stackoverflow.com/questions/43535048/angular-2-routing-does-not-work-when-deployed-to-http-server?rq=1
 - see also to keep paths: https://angular.io/api/common/PathLocationStrategy 
 
+### Upgrade to a new version of Angular
+- `npm run ng update --all`
+- va mettre les dépendances et le code à jour automatiquement! /!\ faire un commit avant et tester après...
+
 ## Outils
 ### npx: node package executor
 - télécharge la dernière version en cache mais ne l'installe pas en global

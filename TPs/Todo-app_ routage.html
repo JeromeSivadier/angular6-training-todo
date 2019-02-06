@@ -48,8 +48,7 @@
 <ul>
 <li>Ajouter au composant racine les liens permettant la navigation (cf. <code>routerLink</code>)
 <ul>
-<li>Si vous aviez intégré Material précédemment, utiliser un <code>mat-sidenav</code> qui contiendra une <code>mat-nav-list</code> qui contiendra
-des les liens. Les liens devront avoir l'attribut <code>mat-list-item</code> pour être stylé correctement.</li>
+<li>Si vous aviez intégré Material précédemment, utiliser un <code>mat-sidenav</code> qui contiendra une <code>mat-nav-list</code> qui contiendra les liens. Les liens devront avoir l'attribut <code>mat-list-item</code> pour être stylé correctement.</li>
 </ul>
 </li>
 <li>Faire en sorte que le router crée les composants déclarés dans les routes, dans le composant racine (cf. <code>router-outlet</code>)</li>
@@ -67,9 +66,18 @@ des les liens. Les liens devront avoir l'attribut <code>mat-list-item</code> pou
 <h2 id="bonus-cr%C3%A9er-un-resolver-de-todo">Bonus: créer un resolver de Todo</h2>
 <ul>
 <li>Générer un service nommé TodoResolver qui implémente l'interface <code>Resolve&lt;Todo[]&gt;</code></li>
+<li>Implémenter le resolver en utilisant le service WebApi.</li>
 <li>Brancher ce resolver sur la route de '/todos'</li>
 <li>Dans le composant page de Todo, au lieu d'utiliser le service WebApi, récupérer les
 todos depuis les <code>data</code> de l'<code>ActivatedRoute</code></li>
+</ul>
+<h2 id="bonus-g%C3%A9rer-lauthentification-de-lutilisateur">Bonus: gérer l'authentification de l'utilisateur</h2>
+<p>Ajouter une garde qui vérifie que l'utilisateur est authentifié. Pour cela :</p>
+<ul>
+<li>créer un service qui permet de stocker l'utilisateur courant</li>
+<li>ajouter une méthode à webapi qui permet de réaliser l'authentification en fonction d'un username. La méthode renvoie <code>true</code> si le username est présent parmi la liste des users donnée par <a href="https://jsonplaceholder.typicode.com/users">jsonplaceholder</a> (coller le contenu des users dans le code). De plus la méthode stocke le user dans le service précédent si le login est ok.</li>
+<li>créer un page de login qui propose juste un champ pour le username. La page fait appel à webapi et redirige vers les todos si le login est ok.</li>
+<li>implémenter la garde qui redirige vers la page de login si l'utilisateur n'est pas authentifié.</li>
 </ul>
 
     

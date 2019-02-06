@@ -47,9 +47,7 @@ import { LoginComponent } from './login/login.component';
   ],
   providers: [
     [
-      { provide: LocationStrategy, useClass: HashLocationStrategy },
-      { provide: WebApi, useClass: MockWebApiService },
-      TodoResolver
+      { provide: WebApi, useClass: MockWebApiService }
     ]
   ],
   bootstrap: [AppComponent]

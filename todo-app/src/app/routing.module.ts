@@ -3,7 +3,7 @@ import { CommonModule } from '@angular/common';
 import { Routes, RouterModule } from '@angular/router';
 import { PlaygroundComponent } from './playground/playground.component';
 import { TodosComponent } from './todos/todos.component';
-import { TodoResolver } from './todos/todo.resolver';
+import { TodoResolver, MyTodoResolver } from './todos/todo.resolver';
 import { LoginComponent } from './login/login.component';
 import { AuthenticationService } from './login/authentication.service';
 
@@ -21,7 +21,9 @@ const routes: Routes = [
   },
   {
     path: 'login',
-    component: LoginComponent
+    resolve: { todos: MyTodoResolver },
+    component: LoginComponent,
+    runGuardsAndResolvers: 'always'
   },
   {
    path: '**',
@@ -34,9 +36,9 @@ const routes: Routes = [
   declarations: [],
   imports: [
     CommonModule,
-    RouterModule.forRoot(routes)
+    RouterModule.forRoot(routes, {useHash: true, onSameUrlNavigation: 'reload'})
   ],
   exports: [RouterModule],
-  providers: [AuthenticationService]
+  providers: [AuthenticationService, TodoResolver, MyTodoResolver]
 })
 export class RoutingModule { }

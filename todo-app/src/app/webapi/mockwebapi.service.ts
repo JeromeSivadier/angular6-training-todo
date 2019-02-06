@@ -9,8 +9,12 @@ import { LoggingService } from '../logging.service';
 export class MockWebApiService extends WebApi {
   todos: Todo[] = this.createInitialList();
 
-  getTodos(): Todo[] {
-    return [...this.todos];
+  getTodos(userId?: number): Todo[] {
+    if (typeof(userId) !== 'undefined') {
+      this.logger.log('Mock: returning filtered tasks for user -> ', userId);
+      return this.todos.filter(t => t.userId === userId);
+    }
+    return [...this.todos]; // copy the whole list
   }
 
   getNextId(): number {
