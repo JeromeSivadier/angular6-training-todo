@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<!-- saved from url=(0040)http://192.168.1.9:8080/tp/todo/tp8.html -->
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        
+        <title>Todo-app: branchement sur un serveur web</title>
+        <link rel="stylesheet" href="./Todo-app_ branchement sur un serveur web_files/katex.min.css" integrity="sha384-9eLZqc9ds8eNjO3TmqPeYcDj8n+Qfa4nuSiGYa6DjLNcv9BtN69ZIulL9+8CqC9Y" crossorigin="anonymous">
+        <link rel="stylesheet" href="./Todo-app_ branchement sur un serveur web_files/markdown.css">
+        <link rel="stylesheet" href="./Todo-app_ branchement sur un serveur web_files/highlight.css">
+        <link href="./Todo-app_ branchement sur un serveur web_files/katex-copytex.min.css" rel="stylesheet" type="text/css">
+        <style>
+.task-list-item { list-style-type: none; } .task-list-item-checkbox { margin-left: -20px; vertical-align: middle; }
+</style>
+        <style>
+            body {
+                font-family: -apple-system, BlinkMacSystemFont, 'Segoe WPC', 'Segoe UI', 'HelveticaNeue-Light', 'Ubuntu', 'Droid Sans', sans-serif;
+                font-size: 14px;
+                line-height: 1.6;
+            }
+        </style>
+        
+        <script src="./Todo-app_ branchement sur un serveur web_files/katex-copytex.min.js"></script>
+    </head>
+    <body>
+        <h1 id="todo-app-branchement-sur-un-serveur-web">Todo-app: branchement sur un serveur web</h1>
+<h2 id="cr%C3%A9er-le-service-restwebapi">Créer le service RestWebApi</h2>
+<ul>
+<li>Modifier le code de WebApi et MockWebApi pour que les fonctions renvoient des Observable
+<ul>
+<li>Typer les Observable en utilisant la syntaxe des generics : <code>Observable&lt;Something&gt;</code></li>
+<li>Vous aurez besoin de la fonction <code>of</code> à importer de <code>rxjs</code>.</li>
+<li>Si ce n'est pas déjà fait, faire en sorte que le composant page de todos
+stocke les todos qu'il récupère à l'initialisation.</li>
+<li>La fonction de suppression du composant page de todos fait actuellement un appel
+au service WebApi afin de récupérer à nouveau les todos après la suppression.
+Modifier ce comportement : les todos doivent être mis à jour sans appel à WebApi.</li>
+<li>Vérifier que l'application fonctionne toujours</li>
+</ul>
+</li>
+<li>Générer un service <code>RestWebApi</code> dans le dossier <code>webapi</code></li>
+<li>Ce service doit étendre WebApi et implémenter les méthodes abstraites en utilisant un <code>HttpClient</code>
+<ul>
+<li>Vous aurez besoin du module <code>HttpClientModule</code></li>
+<li>Vous aurez besoin de l'opérateur <code>map</code> à importer de <code>rxjs/operators</code>
+pour filtrer les todos en fonction d'un userId.</li>
+</ul>
+</li>
+</ul>
+<h2 id="bonus-cr%C3%A9er-un-intercepteur">Bonus: créer un intercepteur</h2>
+<p>On souhaite afficher un "spinner" pendant qu'une requête HTTP est effectuée.
+On créera pour cela un <a href="https://angular.io/guide/http#intercepting-requests-and-responses">HttpInterceptor</a>.
+Le but est de gérer ce comportement à un seul endroit, sans avoir à modifier les pages de l'application.</p>
+<ul>
+<li>Ajouter le service <code>spinner</code> suivant dans votre projet:</li>
+</ul>
+<pre><code class="language-typescript"><div><span class="hljs-keyword">import</span> { Injectable } <span class="hljs-keyword">from</span> <span class="hljs-string">'@angular/core'</span>;
+<span class="hljs-keyword">import</span> { Subject, Observable, merge } <span class="hljs-keyword">from</span> <span class="hljs-string">'rxjs'</span>;
+<span class="hljs-keyword">import</span> { debounceTime, delay, map } <span class="hljs-keyword">from</span> <span class="hljs-string">'rxjs/operators'</span>;
+
+
+<span class="hljs-meta">@Injectable</span>({
+  providedIn: <span class="hljs-string">'root'</span>
+})
+<span class="hljs-keyword">export</span> <span class="hljs-keyword">class</span> SpinnerService {
+  <span class="hljs-keyword">private</span> countRequest = <span class="hljs-number">0</span>;
+  <span class="hljs-keyword">private</span> readonly displaySubject = <span class="hljs-keyword">new</span> Subject&lt;<span class="hljs-literal">null</span>&gt;();
+  <span class="hljs-keyword">private</span> readonly hideSubject = <span class="hljs-keyword">new</span> Subject&lt;<span class="hljs-literal">null</span>&gt;();
+  isLoading: Observable&lt;<span class="hljs-built_in">boolean</span>&gt;;
+
+  <span class="hljs-keyword">constructor</span>(<span class="hljs-params"></span>) {
+      <span class="hljs-keyword">this</span>.isLoading = merge(
+          <span class="hljs-comment">// defer update when requesting display to avoid</span>
+          <span class="hljs-comment">// ExpressionChangedAfterItHasBeenCheckedError</span>
+          <span class="hljs-comment">// when doing an http request in the onNgInit of a component</span>
+          <span class="hljs-keyword">this</span>.displaySubject.pipe(delay(<span class="hljs-number">0</span>)),
+          <span class="hljs-comment">// debounce update when requesting hiding to avoid</span>
+          <span class="hljs-comment">// the screen to flicker when requesting display right after hiding</span>
+          <span class="hljs-keyword">this</span>.hideSubject.pipe(debounceTime(<span class="hljs-number">50</span>))
+      ).pipe(map(<span class="hljs-function"><span class="hljs-params">()</span> =&gt;</span> <span class="hljs-keyword">this</span>.countRequest &gt; <span class="hljs-number">0</span>));
+  }
+
+  displaySpinner() {
+      ++<span class="hljs-keyword">this</span>.countRequest;
+      <span class="hljs-keyword">this</span>.displaySubject.next();
+  }
+
+  hideSpinner() {
+      --<span class="hljs-keyword">this</span>.countRequest;
+      <span class="hljs-keyword">this</span>.hideSubject.next();
+  }
+}
+</div></code></pre>
+<ul>
+<li>Générer un service nommé "LoadingInterceptor" qui implémente HttpInterceptor de <code>@angular/common/http</code>. Pour cela, utiliser la <a href="https://angular.io/guide/http#intercepting-requests-and-responses">documentation d'Angular</a></li>
+<li>Dans la méthode <code>intercept</code>, logger juste un message pour l'instant.</li>
+<li>Brancher l'intercepteur dans <code>app.module</code> pour qu'il soit appeler par Angular (cf. doc).</li>
+<li>Dans la méthode <code>intercept</code>, déclencher l'affichage du spinner. Puis utiliser le paramètre <code>HttpHandler</code>
+pour détecter la fin de la requête (vous aurez besoin de l'opérateur rxjs <code>finalize</code>)
+et cacher le spinner</li>
+<li>Dans <code>app.component</code>, écouter les modifications de l'observable <code>isLoading</code> du SpinnerService
+afin de mettre à jour une variable <code>isLoading</code> du composant.</li>
+<li>Dans le template du composant app, ajouter l'affichage d'un spinner quand la variable <code>isLoading</code>
+est true.
+Si vous avez intégré Material, utiliser le composant <code>mat-spinner</code>, sinon afficher simplement "Loading...".</li>
+</ul>
+
+    
+    </body></html>

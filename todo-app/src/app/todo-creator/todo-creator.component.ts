@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { TodoLight } from '../model/Todo';
-import { LoggingService } from '../logging.service';
+import { LoggingService } from '../utils/logging.service';
 import { FormControl, Validators } from '@angular/forms';
 
 @Component({

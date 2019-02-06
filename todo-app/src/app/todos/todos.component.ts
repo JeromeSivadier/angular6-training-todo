@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Todo, TodoLight } from '../model/Todo';
 import { WebApi } from '../webapi/web-api';
-import { LoggingService } from '../logging.service';
+import { LoggingService } from '../utils/logging.service';
 import { ActivatedRoute } from '@angular/router';
 
 @Component({
@@ -22,20 +22,23 @@ export class TodosComponent implements OnInit {
 
   onAddTodo(todo: TodoLight): void {
     this.logger.log('Todos: adding a new todo -> ', todo);
-    const newTodo = this.webapi.addTodo(todo);
-    this.todos.push(newTodo);
+    this.webapi.addTodo(todo).subscribe((newTodo: Todo) => {
+      this.todos.push(newTodo);
+    });
   }
 
   onTaskStateChanged(taskId: number) {
     this.logger.log('Todos: received changed event -> ', taskId);
-    const modifiedTodo = this.webapi.todoStateChanged(taskId);
-    this.todos.splice(this.getTodoIndex(taskId), 1, modifiedTodo);
+    this.webapi.todoStateChanged(taskId).subscribe((updatedTodo: Todo) => {
+      this.todos.splice(this.getTodoIndex(taskId), 1, updatedTodo);
+    });
   }
 
   onTaskRemoved(taskId: number) {
     this.logger.log('Todos: received remove event -> ', taskId);
-    this.webapi.deleteTodo(taskId);
-    this.todos.splice(this.getTodoIndex(taskId), 1);
+    this.webapi.deleteTodo(taskId).subscribe(_ => {
+      this.todos.splice(this.getTodoIndex(taskId), 1);
+    });
   }
 
   getTodoIndex(taskId: number) {

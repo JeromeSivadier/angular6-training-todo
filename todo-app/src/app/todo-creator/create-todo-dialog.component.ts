@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { MatDialogRef } from '@angular/material';
 import { TodoLight } from '../model/Todo';
-import { LoggingService } from '../logging.service';
+import { LoggingService } from '../utils/logging.service';
 
 @Component({
   selector: 'app-create-todo-dialog',

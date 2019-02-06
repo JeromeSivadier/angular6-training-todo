@@ -14,12 +14,12 @@ import { TodoCreatorComponent } from './todo-creator/todo-creator.component';
 import { CreateTodoDialogComponent } from './todo-creator/create-todo-dialog.component';
 
 import { WebApi } from './webapi/web-api';
-import { MockWebApiService } from './webapi/mockwebapi.service';
+import { RestWebApiService } from './webapi/restwebapi.service';
 import { TodosComponent } from './todos/todos.component';
 import { PlaygroundComponent } from './playground/playground.component';
-import { TodoResolver } from './todos/todo.resolver';
-import { LocationStrategy, HashLocationStrategy } from '@angular/common';
 import { LoginComponent } from './login/login.component';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
+import { LoadinginterceptorService } from './utils/loadinginterceptor.service';
 
 
 @NgModule({
@@ -43,11 +43,13 @@ import { LoginComponent } from './login/login.component';
     MaterialModule,
     BrowserAnimationsModule,
     MatDialogModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    HttpClientModule
   ],
   providers: [
     [
-      { provide: WebApi, useClass: MockWebApiService }
+      { provide: WebApi, useClass: RestWebApiService },
+      { provide: HTTP_INTERCEPTORS, useClass: LoadinginterceptorService, multi: true }
     ]
   ],
   bootstrap: [AppComponent]

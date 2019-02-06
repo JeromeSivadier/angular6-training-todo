@@ -1,6 +1,6 @@
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { Todo, TodoLight } from '../model/Todo';
-import { LoggingService } from '../logging.service';
+import { LoggingService } from '../utils/logging.service';
 import { MatDialog } from '@angular/material';
 import { CreateTodoDialogComponent } from '../todo-creator/create-todo-dialog.component';
 

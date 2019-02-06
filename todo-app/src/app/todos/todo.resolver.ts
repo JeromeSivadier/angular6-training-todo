@@ -3,8 +3,10 @@ import { Resolve } from '@angular/router';
 
 import { Todo } from '../model/Todo';
 import { WebApi } from '../webapi/web-api';
-import { LoggingService } from '../logging.service';
+import { LoggingService } from '../utils/logging.service';
 import { AuthenticationService } from '../login/authentication.service';
+import { Observable } from 'rxjs';
+import { map } from 'rxjs/operators';
 
 @Injectable()
 export class TodoResolver implements Resolve<Todo[]> {
@@ -14,7 +16,7 @@ export class TodoResolver implements Resolve<Todo[]> {
     readonly logger: LoggingService
   ) {}
 
-  resolve(): Todo[] {
+  resolve(): Observable<Todo[]> {
     this.logger.log('Todo-resolver: resolving todos');
     return this.api.getTodos();
   }
@@ -31,11 +33,13 @@ export class MyTodoResolver extends TodoResolver {
     super(api, logger);
   }
 
-  resolve(): Todo[] {
+  resolve(): Observable<Todo[]> {
     const currentUser = this.authService.getCurrentUser();
     if (currentUser) {
       this.logger.log('Todo-resolver: resolving todos for current user -> ', currentUser);
-      return this.api.getTodos(currentUser.userId);
+      return this.api.getTodos(currentUser.userId).pipe(
+        map(todos => todos.filter(t => t.completed === false))
+      );
     }
     return null;
   }
