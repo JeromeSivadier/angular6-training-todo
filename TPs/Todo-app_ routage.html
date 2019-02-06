@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<!-- saved from url=(0040)http://192.168.1.9:8080/tp/todo/tp7.html -->
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        
+        <title>Todo-app: routage</title>
+        <link rel="stylesheet" href="./Todo-app_ routage_files/katex.min.css" integrity="sha384-9eLZqc9ds8eNjO3TmqPeYcDj8n+Qfa4nuSiGYa6DjLNcv9BtN69ZIulL9+8CqC9Y" crossorigin="anonymous">
+        <link rel="stylesheet" href="./Todo-app_ routage_files/markdown.css">
+        <link rel="stylesheet" href="./Todo-app_ routage_files/highlight.css">
+        <link href="./Todo-app_ routage_files/katex-copytex.min.css" rel="stylesheet" type="text/css">
+        <style>
+.task-list-item { list-style-type: none; } .task-list-item-checkbox { margin-left: -20px; vertical-align: middle; }
+</style>
+        <style>
+            body {
+                font-family: -apple-system, BlinkMacSystemFont, 'Segoe WPC', 'Segoe UI', 'HelveticaNeue-Light', 'Ubuntu', 'Droid Sans', sans-serif;
+                font-size: 14px;
+                line-height: 1.6;
+            }
+        </style>
+        
+        <script src="./Todo-app_ routage_files/katex-copytex.min.js"></script>
+    </head>
+    <body>
+        <h1 id="todo-app-routage">Todo-app: routage</h1>
+<h2 id="cr%C3%A9er-les-pages">Créer les pages</h2>
+<ul>
+<li>Déplacer tout le code de gestion des todos de <code>app.component</code> dans un composant <code>todos</code>.</li>
+<li>Déplacer tout le code du 1er TP dans un composant <code>playground</code>.</li>
+</ul>
+<h2 id="cr%C3%A9er-le-module-de-routage">Créer le module de routage</h2>
+<ul>
+<li>Utiliser Angular CLI pour générer un module nommé <code>app</code>, avec l'option <code>--routing</code></li>
+<li>Déplacer le fichier généré <code>app/app-routing.ts</code> à côté de <code>app.module.ts</code> puis supprimer le dossier généré <code>app/app</code></li>
+<li>Dans <code>app-routing</code>, remplacer l'instruction <code>RouterModule.forChild</code> par <code>RouterModule.forRoot</code></li>
+<li>Ajouter <code>AppRoutingModule</code> aux imports de <code>AppModule</code></li>
+</ul>
+<h2 id="configurer-les-routes">Configurer les routes</h2>
+<ul>
+<li>Configurer les routes définies dans <code>app-routing.module</code> :
+<ul>
+<li>'playground' → page Playground</li>
+<li>'todos' → page Todos</li>
+<li>pour tout autre chemin, on redirigera vers Playground (utiliser <code>redirectTo</code>)</li>
+</ul>
+</li>
+</ul>
+<h2 id="cr%C3%A9er-la-navigation">Créer la navigation</h2>
+<ul>
+<li>Ajouter au composant racine les liens permettant la navigation (cf. <code>routerLink</code>)
+<ul>
+<li>Si vous aviez intégré Material précédemment, utiliser un <code>mat-sidenav</code> qui contiendra une <code>mat-nav-list</code> qui contiendra
+des les liens. Les liens devront avoir l'attribut <code>mat-list-item</code> pour être stylé correctement.</li>
+</ul>
+</li>
+<li>Faire en sorte que le router crée les composants déclarés dans les routes, dans le composant racine (cf. <code>router-outlet</code>)</li>
+<li>Faire en sorte que le lien de la page active soit décoré, en gras par ex. (cf. <code>routerLinkActive</code>).</li>
+</ul>
+<h2 id="tester-en-production">Tester en production</h2>
+<ul>
+<li>Lancer le build de l'application (menu Terminal &gt; Run task)</li>
+<li>Installer <code>http-server</code> en tant que dépendance de développement (<code>--save-dev</code>)</li>
+<li>Ajouter une entrée nommé "http" dans les scripts de <code>package.json</code> pour lancer http-server. Faire en sorte qu'il serve les fichiers du dossier généré dans <code>dist/</code>.</li>
+<li>Lancer la tâche "http" (menu Terminal &gt; Run task)</li>
+<li>Tester l'application générée</li>
+<li>Rafraîchir la page</li>
+</ul>
+<h2 id="bonus-cr%C3%A9er-un-resolver-de-todo">Bonus: créer un resolver de Todo</h2>
+<ul>
+<li>Générer un service nommé TodoResolver qui implémente l'interface <code>Resolve&lt;Todo[]&gt;</code></li>
+<li>Brancher ce resolver sur la route de '/todos'</li>
+<li>Dans le composant page de Todo, au lieu d'utiliser le service WebApi, récupérer les
+todos depuis les <code>data</code> de l'<code>ActivatedRoute</code></li>
+</ul>
+
+    
+    </body></html>

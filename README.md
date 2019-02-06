@@ -25,6 +25,22 @@ Cette commande lance le script start que l'on trouve dans la partie scripts de n
 - Supprimer du package.json la dépendance @angular/cli, évite d'avoir plusieurs versions d'angular-cli en fonction des devs
 - Sans ng CLI -> `npm run start` ==> task/script définie par défaut dans le package.json
 
+### Build
+- Terminal > Run task > npm: build
+- build is available in folder dist/app-todo
+
+### Try on development http server
+- /!\ Build before!
+- `npx npm install --save-dev http-server`
+- Rajouter dans le package.json le script `"http": "ng http-server dist/app-todo/` pour servir http-server depuis le dossier dist/
+- Run http task Terminal > Run task
+
+### Ensure refresh works on deployment
+- !! Use hash strategy instead of location one
+- `{provide: LocationStrategy, useClass: HashLocationStrategy},` in AppModule
+- see https://stackoverflow.com/questions/43535048/angular-2-routing-does-not-work-when-deployed-to-http-server?rq=1
+- see also to keep paths: https://angular.io/api/common/PathLocationStrategy 
+
 ## Outils
 ### npx: node package executor
 - télécharge la dernière version en cache mais ne l'installe pas en global
@@ -52,3 +68,6 @@ Cette commande lance le script start que l'on trouve dans la partie scripts de n
 ### materialpalette.com
 - tests de couleurs pour du Material design
 - montre une preview des composants en fonction des couleurs primaire / secondaire choisies
+
+### Web server for chrome
+- extension Chrome qui permet de rajouter un mini webserver dans Chrome pour servir des applis de test en prod

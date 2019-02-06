@@ -1,5 +1,16 @@
-<app-todo-list
-  [todos]="todos"
-  (taskStateChanged)="onTaskStateChanged($event)"
-  (taskRemoved)="onTaskRemoved($event)"
-  (generateTodo)="onAddTodo($event)"></app-todo-list>
+<mat-sidenav-container class="sidenav-container">
+  <mat-sidenav mode="side" opened>
+    <mat-nav-list>
+      <a mat-list-item [routerLink]="['/playground']" routerLinkActive="active">
+        <span matLine>Playground</span>
+      </a>
+      <a mat-list-item [routerLink]="['/todos']" routerLinkActive="active">
+        <span matLine>Todos</span>
+      </a>
+    </mat-nav-list>
+  </mat-sidenav>
+  <mat-sidenav-content>
+    <router-outlet></router-outlet>
+  </mat-sidenav-content>
+</mat-sidenav-container>
+

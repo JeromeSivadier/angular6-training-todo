@@ -1,0 +1,5 @@
+<app-todo-list
+  [todos]="todos"
+  (taskStateChanged)="onTaskStateChanged($event)"
+  (taskRemoved)="onTaskRemoved($event)"
+  (generateTodo)="onAddTodo($event)"></app-todo-list>
