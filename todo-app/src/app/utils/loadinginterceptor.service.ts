@@ -15,6 +15,8 @@ export class LoadinginterceptorService implements HttpInterceptor {
     return next.handle(req).pipe(
       // delay(2000), -> uncomment if you wish to see the spinner spinning
       finalize(() => this.spinner.hideSpinner()),
+
+      // Normally this should be declared in its own class because error handling is quite complex!
       catchError(error => {
         this.notifications.addNotification(error.message);
         return throwError(error);

@@ -1,11 +1,12 @@
 <div>
-  <p>Selected task id: {{selectedTodoId}}</p>
+  <p> Selected task id: {{selectedTodo ? selectedTodo.id : undefined}}</p>
 </div>
 
 <mat-form-field>
-  <mat-select placeholder="Tasks" [(ngModel)]="selectedTodoId">
-    <mat-option *ngFor="let todo of todos" [value]="todo.id">{{todo.title}}</mat-option>
-  </mat-select>
+  <input type="text" placeholder="Select a task" matInput [formControl]="todoInput" [matAutocomplete]="autocomplete">
+  <mat-autocomplete #autocomplete="matAutocomplete" [displayWith]="displayFn">
+    <mat-option *ngFor="let todo of filteredTodos$ | async" [value]="todo">{{todo.title}}</mat-option>
+  </mat-autocomplete>
 </mat-form-field>
 <button mat-stroked-button (click)="onAddTodo()" >Add Todo</button>
 
