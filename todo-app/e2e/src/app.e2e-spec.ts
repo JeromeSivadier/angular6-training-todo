@@ -10,7 +10,18 @@ describe('workspace-project App', () => {
 
   it('should display login message', () => {
     page.navigateTo();
-    expect(page.getLoginMenu()).toEqual('Login');
+    expect(page.getLoginLabel()).toEqual('Login');
+  });
+
+  it('should be able to add a task', async () => {
+    page.navigateTo();
+    page.login('Bret');
+    await page.wait(3000);
+    page.getNavLink('/todos').click();
+    await page.wait(1000);
+    page.addTask('AAAAAA', 10);
+
+    await page.wait(10000);
   });
 
   afterEach(async () => {
