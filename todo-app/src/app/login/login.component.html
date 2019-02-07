@@ -13,11 +13,13 @@
 <ng-template #loginRequired>
   <div class="login-div">
     <p>Please enter your login to authenticate</p>
-    <mat-form-field>
-      <input matInput [formControl]="login" placeholder="Login" required />
-      <mat-error *ngIf="login.invalid">Enter a valid login</mat-error>
-    </mat-form-field>
-    <button mat-stroked-button (click)="onLogin()">Login</button>
+    <form (submit)="onLogin()">
+      <mat-form-field>
+        <input matInput [formControl]="login" placeholder="Login" required />
+        <mat-error *ngIf="login.invalid">Enter a valid login</mat-error>
+      </mat-form-field>
+      <button mat-stroked-button type="submit">Login</button>
+    </form>
     <!-- Remote logins -->
     <!-- Bret: id=1 -->
     <!-- Antonelle: id=2 -->

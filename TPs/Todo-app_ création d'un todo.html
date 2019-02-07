@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<!-- saved from url=(0040)http://192.168.1.9:8080/tp/todo/tp9.html -->
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        
+        <title>Todo-app: création d'un todo</title>
+        <link rel="stylesheet" href="./Todo-app_ création d&#39;un todo_files/katex.min.css" integrity="sha384-9eLZqc9ds8eNjO3TmqPeYcDj8n+Qfa4nuSiGYa6DjLNcv9BtN69ZIulL9+8CqC9Y" crossorigin="anonymous">
+        <link rel="stylesheet" href="./Todo-app_ création d&#39;un todo_files/markdown.css">
+        <link rel="stylesheet" href="./Todo-app_ création d&#39;un todo_files/highlight.css">
+        <link href="./Todo-app_ création d&#39;un todo_files/katex-copytex.min.css" rel="stylesheet" type="text/css">
+        <style>
+.task-list-item { list-style-type: none; } .task-list-item-checkbox { margin-left: -20px; vertical-align: middle; }
+</style>
+        <style>
+            body {
+                font-family: -apple-system, BlinkMacSystemFont, 'Segoe WPC', 'Segoe UI', 'HelveticaNeue-Light', 'Ubuntu', 'Droid Sans', sans-serif;
+                font-size: 14px;
+                line-height: 1.6;
+            }
+        </style>
+        
+        <script src="./Todo-app_ création d&#39;un todo_files/katex-copytex.min.js"></script>
+    </head>
+    <body>
+        <h1 id="todo-app-cr%C3%A9ation-dun-todo">Todo-app: création d'un todo</h1>
+<h2 id="fonction-createtodo">Fonction createTodo</h2>
+<ul>
+<li>Ajouter la fonction <code>createTodo(todo: Todo): Observable&lt;Todo&gt;</code> à <code>WebApi</code>:
+<ul>
+<li>Dans le mock, faire simplement <code>throw new Error('Not implemented')</code></li>
+<li>Dans le service utilisant http, utiliser la fonction <code>post</code> de HttpClient</li>
+</ul>
+</li>
+</ul>
+<h2 id="composant-todo-form">Composant todo-form</h2>
+<ul>
+<li>Générer un composant <code>todo-form</code></li>
+<li>Dans la classe du composant, ajouter une variable membre <code>form</code> qui est de type <code>FormGroup</code>
+et qui est initialisée avec 2 <code>FormControl</code>: title et completed</li>
+<li>Dans le template du composant, créer un formulaire (balise <code>&lt;form&gt;</code>) qui contient:
+<ul>
+<li>un input texte pour le titre,</li>
+<li>un input checkbox pour l'état completed</li>
+<li>un bouton pour déclencher la création du todo</li>
+</ul>
+</li>
+<li>Les deux inputs doivent être liés au <code>FormGroup</code> grâce à l'attribut <code>formControlName</code></li>
+<li>Lier l'événement <code>submit</code> du <code>&lt;form&gt;</code> à une méthode <code>onSubmit</code> de votre composant.
+Cette méthode doit construire un objet de type Todo et utiliser la WebApi pour le créer</li>
+<li>Quand la création du todo a effectuée avec succès par le serveur, envoyer dans le composant
+un événement <code>created</code> de type Todo (<code>EventEmitter&lt;Todo&gt;</code>)
+<ul>
+<li>Attraper l'événement dans le composant pages des todos pour mettre à jour la liste des todos.
+Utiliser la fonction <code>unshift</code> de Array pour le todo apparaisse en haut de la liste.</li>
+</ul>
+</li>
+</ul>
+<h2 id="bonus-validation">Bonus: validation</h2>
+<ul>
+<li>Empêcher que l'utilisateur puisse créer un todo avec un titre vide:
+<ul>
+<li>le bouton doit être "disabled"</li>
+<li>un warning doit s'affiche si le titre est vide</li>
+</ul>
+</li>
+</ul>
+
+    
+    </body></html>

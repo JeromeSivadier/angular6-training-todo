@@ -4,6 +4,8 @@ import { LoggingService } from './utils/logging.service';
 import { WebApi } from './webapi/web-api';
 import { AuthenticationService } from './login/authentication.service';
 import { SpinnerService } from './utils/spinner.service';
+import { NotificationsService } from './utils/notifications.service';
+import { MatSnackBar } from '@angular/material';
 
 @Component({
   selector: 'app-root',
@@ -22,6 +24,14 @@ export class AppComponent implements OnInit {
 
   constructor(
     public readonly authService: AuthenticationService,
-    private readonly spinner: SpinnerService
-  ) {}
+    private readonly spinner: SpinnerService,
+    private readonly notificationService: NotificationsService,
+    private readonly snackbar: MatSnackBar
+  ) {
+    this.notificationService.notifications.subscribe(message => {
+      this.snackbar.open(message, 'Dismiss', {
+        duration: 5000
+      });
+    });
+  }
 }
