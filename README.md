@@ -28,6 +28,7 @@ Cette commande lance le script start que l'on trouve dans la partie scripts de n
 ### Build
 - Terminal > Run task > npm: build
 - build is available in folder dist/app-todo
+- Note: to build for production, edit the package.json to add `--prod` in the line `"build": "ng build --prod"` 
 
 ### Try on development http server
 - /!\ Build before!

@@ -35,7 +35,7 @@ export class TodoListComponent implements OnInit {
     return this.todos.filter(t => t.completed === true);
   }
 
-  onAddTodo(todo: TodoLight): void {
+  onAddTodo(): void {
     const dialogRef = this.dialog.open(CreateTodoDialogComponent);
     dialogRef.afterClosed().subscribe(result => {
       this.logger.log('Todo-list: received generate todo -> ', result);
