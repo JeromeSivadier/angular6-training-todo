@@ -31,13 +31,11 @@ export class LoginComponent implements OnInit {
   }
 
   onLogin(): void {
-    const login = this.login.value;
-    if (!this.authService.isValidLogin(login)) {
-      this.login.setErrors({ invalidLogin: {value: login} });
-      return;
-    }
-    this.authService.authenticate(login);
-    this.router.navigate(['/login']);
+    this.authService.authenticate(this.login.value).subscribe(user => {
+      this.router.navigate(['/login']);
+    }, error => {
+      this.login.setErrors(error);
+    });
   }
 
   onLogout(): void {

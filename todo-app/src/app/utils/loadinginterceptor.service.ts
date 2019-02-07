@@ -12,7 +12,7 @@ export class LoadinginterceptorService implements HttpInterceptor {
   intercept(req: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
     this.spinner.displaySpinner();
     return next.handle(req).pipe(
-      delay(2000),
+      // delay(2000), -> uncomment if you wish to see the spinner spinning
       finalize(() => this.spinner.hideSpinner())
     );
   }

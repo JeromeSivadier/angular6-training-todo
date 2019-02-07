@@ -1,6 +1,6 @@
 <div *ngIf="getCurrentUser(); else loginRequired">
   <mat-list>
-    <h3 mat-subheader>{{ getCurrentUser().login }}'s tasks TODO</h3>
+    <h3 mat-subheader>{{ getCurrentUser().username }}'s tasks TODO</h3>
     <mat-list-item *ngFor="let todo of getMyTodos()">
         <mat-icon mat-list-icon>turned_in_not</mat-icon>
         <h4 mat-line>{{todo.title}}</h4>
@@ -18,5 +18,9 @@
       <mat-error *ngIf="login.invalid">Enter a valid login</mat-error>
     </mat-form-field>
     <button mat-stroked-button (click)="onLogin()">Login</button>
+    <!-- Remote logins -->
+    <!-- Bret: id=1 -->
+    <!-- Antonelle: id=2 -->
+    <!-- Samantha: id=3-->
   </div>
 </ng-template>

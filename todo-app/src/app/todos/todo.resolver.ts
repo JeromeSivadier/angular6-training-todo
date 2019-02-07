@@ -37,7 +37,7 @@ export class MyTodoResolver extends TodoResolver {
     const currentUser = this.authService.getCurrentUser();
     if (currentUser) {
       this.logger.log('Todo-resolver: resolving todos for current user -> ', currentUser);
-      return this.api.getTodos(currentUser.userId).pipe(
+      return this.api.getTodos(currentUser.id).pipe(
         map(todos => todos.filter(t => t.completed === false))
       );
     }
