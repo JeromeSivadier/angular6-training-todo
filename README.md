@@ -76,3 +76,9 @@ Cette commande lance le script start que l'on trouve dans la partie scripts de n
 
 ### Web server for chrome
 - extension Chrome qui permet de rajouter un mini webserver dans Chrome pour servir des applis de test en prod
+
+### Deploy on Github pages
+- https://alligator.io/angular/deploying-angular-app-github-pages/
+- `npm run ng build -- --prod --base-href "https://jerk31.github.io/angular6-training-todo/"`
+- `npx -p angular-cli-ghpages ngh --dir dist/todo-app/`
+- Servir la branche gh-pages depuis Github
