@@ -26,12 +26,12 @@ Cette commande lance le script start que l'on trouve dans la partie scripts de n
 - Sans ng CLI -> `npm run start` ==> task/script définie par défaut dans le package.json
 
 ### Build
-- Terminal > Run task > npm: build
-- build is available in folder dist/app-todo
+- Terminal > Run task > `npm: build`
+- Build is available in folder dist/app-todo
 - Note: to build for production, edit the package.json to add `--prod` in the line `"build": "ng build --prod"` 
 
 ### Try on development http server
-- /!\ Build before!
+- /!\ **Build before!**
 - `npx npm install --save-dev http-server`
 - Rajouter dans le package.json le script `"http": "ng http-server dist/app-todo/` pour servir http-server depuis le dossier dist/
 - Run http task Terminal > Run task
@@ -65,14 +65,10 @@ Cette commande lance le script start que l'on trouve dans la partie scripts de n
 - webpack.js => invoqué à chaque modification d'un fichier sur le disque, tire le graphe de deps et génère l'application minifiée
 - websocket mis en place entre la page et le code de développement pour recharger la page dynamiquement à chaque edit (après recompilation)
 
-### typescriptlang.org
-
-### material.io
-- site Material de Google qui indique comment faire des interface graphiques avec DO et DONT
-
-### materialpalette.com
-- tests de couleurs pour du Material design
-- montre une preview des composants en fonction des couleurs primaire / secondaire choisies
+### Useful links
+- http://typescriptlang.org => informations on the Typescript language
+- http://material.io => site Material de Google qui indique comment faire des interface graphiques avec DO et DONT
+- http://materialpalette.com => tests de couleurs pour du Material design, montre une preview des composants en fonction des couleurs primaire / secondaire choisies
 
 ### Web server for chrome
 - extension Chrome qui permet de rajouter un mini webserver dans Chrome pour servir des applis de test en prod
