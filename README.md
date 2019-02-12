@@ -1,5 +1,8 @@
 # Readme
 
+## Live demo
+- https://jerk31.github.io/angular6-training-todo
+
 ## Generalités
 ### Création du projet Angular
 Pour générer la base de notre projet, nous allons utiliser Angular CLI (Command Line Interface). La documentation d'Angular CLI indique de l'installer en utilisant npm install -g @angular/cli puis de faire ng new my-app pour générer l'application. Cette commande installe Angular CLI globalement sur le poste de travail. Comme nous ne créons pas de nouvelle application Angular tous les jours et que la prochaine fois, l'Angular CLI installé ne sera plus à jour, nous allons utiliser npx.
@@ -65,11 +68,6 @@ Cette commande lance le script start que l'on trouve dans la partie scripts de n
 - webpack.js => invoqué à chaque modification d'un fichier sur le disque, tire le graphe de deps et génère l'application minifiée
 - websocket mis en place entre la page et le code de développement pour recharger la page dynamiquement à chaque edit (après recompilation)
 
-### Useful links
-- http://typescriptlang.org => informations on the Typescript language
-- http://material.io => site Material de Google qui indique comment faire des interface graphiques avec DO et DONT
-- http://materialpalette.com => tests de couleurs pour du Material design, montre une preview des composants en fonction des couleurs primaire / secondaire choisies
-
 ### Web server for chrome
 - extension Chrome qui permet de rajouter un mini webserver dans Chrome pour servir des applis de test en prod
 
@@ -78,3 +76,28 @@ Cette commande lance le script start que l'on trouve dans la partie scripts de n
 - `npm run ng build -- --prod --base-href "https://jerk31.github.io/angular6-training-todo/"`
 - `npx -p angular-cli-ghpages ngh --dir dist/todo-app/`
 - Servir la branche gh-pages depuis Github
+
+### Outils
+- Webstorm: version de Intellij IDE pour le JS et TS
+- Postman: outil pour tester des API REST en déroulant des scénarii
+- revealjs: lib pour présenter du Markdown dans un navigateur
+
+### Useful links
+#### Typescript / Javascript
+- http://typescriptlang.org => informations on the Typescript language
+- MDN {keyword} => recherche sur Mozilla Developers Network le keyword donné (très bonne doc de l'API javascript)
+- https://caniuse.com/ => compatibilités navigateurs avec les fonctions de Javascript
+
+#### Angular Material
+- https://stackblitz.com/ => web IDE + compilateur Angular
+- http://material.io => site Material de Google qui indique comment faire des interface graphiques avec DO et DONT
+- https://material.angular.io/ => implémentation de Material avec Angular
+- http://materialpalette.com => tests de couleurs pour du Material design, montre une preview des composants en fonction des couleurs primaire / secondaire choisies
+
+#### Web API
+- https://jsonplaceholder.typicode.com/ => API REST pour des tests
+- http://todomvc.com/ => comparatif de l'appli TODO dans différents framework
+
+#### Reactive (rx)
+- http://rxmarbles.com/ => marble diagrams pour présenter les opérateurs rx
+- https://www.learnrxjs.io/ => apprendre la programmation réactive
